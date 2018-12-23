@@ -2,8 +2,8 @@ var connect = require('connect')
 
 var app = connect()
 
-app.use(logger)
 app.use(hello)
+    .use(logger)
 
 app.listen(3000)
 

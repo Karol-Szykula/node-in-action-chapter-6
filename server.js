@@ -1,5 +1,6 @@
 const connect = require('connet')
 const router = require('./middleware/router')
+const url = require('url')
 
 const routes = {
     GET: {
@@ -18,6 +19,8 @@ const routes = {
 }
 
 connect()
+    .use(reqrite)
+    .use(showPost)
     .use(router(routes))
     .listen(3000)
 

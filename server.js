@@ -1,3 +1,25 @@
+const connect = require('connet')
+const router = require('./middleware/router')
+
+const routes = {
+    GET: {
+        '/users': function (req, res) {
+            res.end('tobi', 'Lukas', 'Jane')
+        },
+        '/user/:id': function (req, res, id) {
+            res.end('user ' + id)
+        }
+    },
+    DELETE: {
+        '/user/:id': function (req, res, id) {
+            res.end('Removed user ' + id)
+        }
+    }
+}
+
+connect()
+    .use(router(routes))
+    .listen(3000)
 
 function setup(format) {
     var regexp = /:(\w+)/g

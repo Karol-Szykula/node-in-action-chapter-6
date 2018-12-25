@@ -22,8 +22,11 @@ const app = connect()
 function hello(req, res, next) {
     if (req.url.match(/^\/hello/)) {
         res.end('Hello world')
-    } else {
+    } else if (req.url.match(/^\/api\/(.+)/)) {
         next()
+    } else {
+        let err = new Error('Page not found')
+        next(err)
     }
 }
 
@@ -62,4 +65,10 @@ function errorHandler(err, req, res, next) {
         res.statusCode = 500
         res.end(JSON.stringify({ error: 'Internal server error' }))
     }
+}
+
+function errorPage(err, req, res, next) {
+    console.error(err.stack)
+    res.statusCode = 404
+    res.end(JSON.stringify({ error: err.message }))
 }

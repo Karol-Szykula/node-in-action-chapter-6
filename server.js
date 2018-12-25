@@ -10,3 +10,11 @@ const app = connect()
     .use('/api', api)
     .use(errorPage)
     .listen(3000)
+
+function hello(req, res, next) {
+    if (req.url.match(/^\/hello/)) {
+        res.end('Hello world')
+    } else {
+        next()
+    }
+}

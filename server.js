@@ -43,3 +43,11 @@ function users(req, res, next) {
         next()
     }
 }
+
+function pets(req, res, next) {
+    if (req.url.match(/^\/pet\/(.+)/)) {
+        foo()
+    } else {
+        next()
+    }
+}
